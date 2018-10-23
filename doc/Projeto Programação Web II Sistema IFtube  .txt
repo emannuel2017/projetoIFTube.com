@@ -1,0 +1,24 @@
+Projeto – Programação Web II - 16/10/2018
+
+
+Professor(a): Bruno Normande
+Turno/Módulo: 3º Módulo Vespertino
+
+
+Descrição:
+Avaliação da Viabilidade e  Desejabilidade na montagem básica do protótipo do sistema.
+Integrantes do grupo:
+*   Emannuel Souza, Pedro Cesar e Weslley Santos.
+Sistema:
+*   IFTube.com
+Objetivo:           
+1. IFTube é um site cujo objetivo é, primeiramente, servir como meio de divulgação de vídeos de autoria de estudantes dos Institutos Federais. A ideia da ferramenta é fornecer uso exclusivo aos discentes e aos docentes de seus próprios trabalhos, dando ciência aos seus atuais e futuros integrantes. 
+Ideias para o site
+Viabilidade
+1. Inicialmente apoio do Instituto (IFAL);
+2. Lucro trimestral das (Governo).
+
+
+Desejabilidade 
+1.  Interação com os outros alunos e professores;
+2.  Divulgação dos trabalhos acadêmicos dos institutos em nossa plataforma.
