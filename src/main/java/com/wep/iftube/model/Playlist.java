@@ -15,8 +15,8 @@ public class Playlist {
 	@Column
 	private String nome;
 	
-	@OneToMany
-	private List<Video> video;
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Video> video = new ArrayList<Video>();
 	
 	@Column
 	private int quantidadeDeVideo;
@@ -37,7 +37,8 @@ public class Playlist {
 		return video;
 	}
 	public void setVideo(List<Video> video) {
-		this.video = video;
+		this.video.clear();
+		this.video.addAll(video);
 	}
 	public int getQuantidadeDeVideo() {
 		return quantidadeDeVideo;

@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import net.bytebuddy.asm.Advice.AllArguments;
+
 @Entity
 public class Canal {
 	
@@ -21,14 +23,14 @@ public class Canal {
 	@Column
 	private String senha;
 	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
 	private Historico historico;
 	
-	@OneToMany
-	private List<Comentario> comentario;
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Comentario> comentario = new ArrayList<Comentario>();
 	
-	@OneToMany
-	private List<Playlist> playlist;
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Playlist> playlist = new ArrayList<Playlist>();
 	
 	public String getNome() {
 		return nome;
@@ -64,13 +66,15 @@ public class Canal {
 		return comentario;
 	}
 	public void setComentario(List<Comentario> comentario) {
-		this.comentario = comentario;
+		this.comentario.clear();
+		this.comentario.addAll(comentario);
 	}
 	public List<Playlist> getPlaylist() {
 		return playlist;
 	}
 	public void setPlaylist(List<Playlist> playlist) {
-		this.playlist = playlist;
+		this.playlist.clear();
+		this.playlist.addAll(playlist) ;
 	}
 
 }

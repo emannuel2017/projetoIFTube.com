@@ -17,7 +17,6 @@ public class Comentario {
 	private Long id;
 	
 	
-	
 	@Column
 	private String texto;
 	

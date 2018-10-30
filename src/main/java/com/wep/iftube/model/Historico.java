@@ -11,8 +11,8 @@ public class Historico {
 	@GeneratedValue
 	private Long id;
 	
-	@OneToMany
-	private List<Video> videos;
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Video> videos = new ArrayList<Video>();
 
 	public Long getId() {
 		return id;
@@ -27,7 +27,8 @@ public class Historico {
 	}
 
 	public void setVideos(List<Video> videos) {
-		this.videos = videos;
+		this.videos.clear();
+		this.videos.addAll(videos);
 	}
 	
 }

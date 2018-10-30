@@ -25,8 +25,8 @@ public class Video {
 	@Column
 	private Long visualizacoes;
 	
-	@OneToMany
-	private List<Chat> chat;
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Chat> chat = new ArrayList<Chat>();
 	
 	@Column
 	private LocalDateTime dataDePostagem;
@@ -76,7 +76,8 @@ public class Video {
 	}
 
 	public void setChat(List<Chat> chat) {
-		this.chat = chat;
+		this.chat.clear();
+		this.chat.addAll(chat);
 	}
 
 	public LocalDateTime getDataDePostagem() {
