@@ -30,6 +30,12 @@ public class CanalController {
 		return canalRepository.findAll(pageable);
 	}
 	
+	@GetMapping("/canal/{canalId}")
+	public Canal getOneCanal(@PathVariable Long canalId){   		
+	return canalRepository.findById(canalId).orElseThrow(()-> new  ResourceNotFoundException("página não encontrada" + canalId));
+	
+	}
+	
 	@PostMapping("/canal")
 	private Canal createCanal(@Valid @RequestBody Canal canal) {
 		return canalRepository.save(canal);
