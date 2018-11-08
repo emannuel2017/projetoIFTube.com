@@ -3,60 +3,33 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="js/js.js"></script>
+
+<style type="text/css">
+table, td, th {
+	border: 0.5px solid black;
+}
+</style>
 </head>
 <body>
-OI
 
-<script type="text/javascript">
-/*
- let xhr = new XMLHttpRequest();
+	<table id='canais'>
+		<tr>
+			<th>id</th>
+			<th>Nomes dos Canais</th>
+			<th>email</th>
+		</tr>
 
- xhr.open('GET','/canal/1');
+	</table>
 
- xhr.onload = function(){
-	 //alert(`Status: ${this.status} -- ${this.responseText}`)
-  if(this.status != 200)console.log("Erro!"); 
-  else{
-	  console.log(this.responseText);
-	  
-	  let a = JSON.parse(this.responseText);
-	  console.log(a);
-  }
- 
- };
- xhr.onerro = () => alert('ERRO');
- xhr.send();*/
- 
- let xhr = new XMLHttpRequest();
- xhr.open('POST','/canal');
- 
- xhr.onload = function(){
-	 
-	 if(this.status == 200){
-		 console.log('Sucesso');
-		 console.log(JSON.parse(this.responseText));
-	 }
-	 
- };
- 
- xhr.setRequestHeader('Content-Type', 'application/json');
- 
- let novo = {"id": 3,
-         "nome": "Pedrosonaro",
-         "email": "Pedrosonaro@vaila",
-         "senha": "12354",
-         "historico": null,
-         "comentario": [
-             {
-                 "id": 4,
-                 "texto": "text"
-             }
-         ],
-         "playlist": []
-       };
- xhr.send(JSON.stringify(novo));
- 
-</script>
+	<form>
+		<label>Nome do canal:</label><br /> <input id = "nome" type="text"><br />
+		<label>Email:</label><br /> <input id = "email" type="email"><br /> 
+		<label>Senha:</label><br /> <input id = "senha" type="password"><br />
+		
+		<input type="submit">
+			
+	</form>
 
 </body>
 </html>
