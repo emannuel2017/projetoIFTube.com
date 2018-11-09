@@ -11,7 +11,7 @@ table, td, th {
 }
 </style>
 </head>
-<body>
+<body onload="tabela()">
 
 	<table id='canais'>
 		<tr>
@@ -23,11 +23,15 @@ table, td, th {
 	</table>
 
 	<form>
-		<label>Nome do canal:</label><br /> <input id = "nome" type="text"><br />
+		<label>Nome do canal:</label><br /> <input id = "nome" type="text"/><br />
 		<label>Email:</label><br /> <input id = "email" type="email"><br /> 
 		<label>Senha:</label><br /> <input id = "senha" type="password"><br />
 		
-		<input type="submit">
+		<input type="submit" onclick="save()"><br>
+		<label>id:</label><br /> <input id = "id" type="text"><br/>
+		
+		<label>Update</label><br><input type="submit" onclick="update()"><br>
+		<label>Deletar</label><br><input type="submit" onclick="delet()">
 			
 	</form>
 

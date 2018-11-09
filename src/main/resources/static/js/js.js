@@ -19,18 +19,18 @@
  };
  xhr.onerro = () => alert('ERRO');
  xhr.send();*/
- 
- let xhr = new XMLHttpRequest();
+  let xhr = new XMLHttpRequest();
+  
+
+function tabela(){
  let recebe; 
- xhr.open('POST','/canal');
+ xhr.open('GET','/canal');
  
  xhr.onload = function(){
 	 
 	 if(this.status == 200){
-		 console.log('Sucesso');
 		 recebe = JSON.parse(this.responseText);
-		 console.log(recebe);
-for (var i = 0; i < recebe.content.length; i++) {
+		 for (var i = 0; i < recebe.content.length; i++) {
 			 
 			 document.getElementById('canais').innerHTML += " <tr><td> " + recebe.content[i].id + "</td>"
 			+ "<td>" + recebe.content[i].nome + "</td>"
@@ -39,30 +39,64 @@ for (var i = 0; i < recebe.content.length; i++) {
 	 }
 	 
  };
- 
- 
- 
- 
- xhr.setRequestHeader('Content-Type', 'application/json');
- 
- /*let novo = {"id": 3,
-         "nome": "Pedrosonaro",
-         "email": "Pedrosonaro@vaila",
-         "senha":                "12354",
-         "historico": null,
-         "comentario": [
-             {
-                 "id": 4,
-                 "texto": "text"
-             }
-         ],
-         "playlist": []
-       };
- */
- let nome = document.getElementById('nome').value;
- 
- let novo = {"nome": nome }
- 
- xhr.send(JSON.stringify(novo));
- 
+ xhr.onerro = () => alert('ERRO');
+ xhr.send();
+}
 
+function save(){
+ 
+	 xhr.open('POST','/canal');
+
+	 xhr.setRequestHeader('Content-Type', 'application/json');
+	 
+	 
+	 
+	 let nome = document.getElementById('nome').value;
+	 let email = document.getElementById('email').value;
+	
+	 
+	 let novo = {
+	         "nome": `${nome}`,
+	         "email":`${email}`
+	         
+	       };
+	 xhr.onerro = () => alert('ERRO');
+	 xhr.send(JSON.stringify(novo));
+	 console.log('Sucesso salvo');
+	
+	
+}
+
+
+function update(){	
+	let  id =  document.getElementById('id').value;
+	xhr.open('PUT',"/canal/" + id)
+	xhr.setRequestHeader('Content-Type','application/json');
+	
+	 let nome = document.getElementById('nome').value;
+	 let email = document.getElementById('email').value;
+	 
+	
+	 
+	 let novo = {
+			 "nome": `${nome}`,
+	         "email":`${email}`
+	       };
+	 
+	 xhr.onerro = () => alert('ERRO');
+	 xhr.send(JSON.stringify(novo));
+	 console.log('Sucesso salvo');
+	
+}
+
+function delet(){
+	
+	let  id =  document.getElementById('id').value;
+	xhr.open('DELETE',"/canal/" + id)
+	
+	
+	
+	 xhr.onerro = () => alert('ERRO');
+	 xhr.send();
+	 console.log('Sucesso salvo');
+}
