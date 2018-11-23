@@ -46,4 +46,9 @@ public class Playlist {
 	public void setQuantidadeDeVideo(int quantidadeDeVideo) {
 		this.quantidadeDeVideo = quantidadeDeVideo;
 	}
+	
+	public void addVideo(Video video) {
+		this.video.add(video);
+	}
+			
 }

@@ -82,5 +82,17 @@ public class Canal {
 		this.playlist.add(playlist);
 		
 	}
+	
+	
+	public void removerPlaylist( Long idPlay ) {
+		Playlist recebePLaylist = null;
+		for (Playlist playlist : this.playlist) {
+			if(playlist.getId() == idPlay) {				
+				recebePLaylist = playlist;				
+			}
+		}
+		this.playlist.remove(recebePLaylist);
+	}
+	
 
 }

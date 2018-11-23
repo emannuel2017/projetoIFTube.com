@@ -5,6 +5,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.wep.iftube.exception.ResourceNotFoundException;
 import com.wep.iftube.model.Playlist;
+import com.wep.iftube.model.Video;
 import com.wep.iftube.repositories.PlaylistRepository;
 
 @RestController
@@ -47,4 +49,26 @@ public class PLaylistController {
 				}).orElseThrow(() -> new ResourceNotFoundException("página não encontrada" + playId));
 
 	}
+	
+	@DeleteMapping("/playlist/{playId}")
+	public ResponseEntity<?> delete(@PathVariable Long playId){
+		
+		return playlistRepository.findById(playId)
+				.map(playlist -> {
+					playlistRepository.delete(playlist);
+					
+					return ResponseEntity.ok().build();
+				}).orElseThrow(() -> new ResourceNotFoundException("página não encontrada" + playId));
+		
+	}
+	
+	@PostMapping("/playlist/{playId}/addVideo")
+	public Playlist addVideo (@PathVariable Long playId, @Valid @RequestBody Video video) {
+		
+		return playlistRepository.findById(playId).map(playlist -> {
+			playlist.addVideo(video);
+			return playlistRepository.save(playlist);
+		}).orElseThrow(() -> new ResourceNotFoundException("página não encontrada" + playId));
+	}
+	
 }

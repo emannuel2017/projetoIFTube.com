@@ -44,22 +44,8 @@ public class CanalController {
 
 	}
 	
-	@PostMapping("/canal/{canalId}/addPlaylist")
-	public Canal addPlaylist (@PathVariable Long canalId, 
-			@Valid @RequestBody Playlist playlist) {
-		
-		return canalRepository.findById(canalId)
-				.map(canal -> {
-					
-					canal.addPlaylist(playlist);
-					return canalRepository.save(canal);
-							
-				}).orElseThrow(() -> new ResourceNotFoundException("Página não encontrada"
-						+ canalId));
-		
-	}
 	
-	
+		
 	@PutMapping("/canal/{canalId}")
 	public Canal updateCanal(@PathVariable Long canalId,
 			@Valid @RequestBody Canal canalRequest) {
@@ -87,4 +73,34 @@ public class CanalController {
 				}).orElseThrow(() -> new ResourceNotFoundException("Página não encontrada" + canalId));
 	}
 	
+	@PostMapping("/canal/{canalId}/addPlaylist")
+	public Canal addPlaylist (@PathVariable Long canalId, 
+			@Valid @RequestBody Playlist playlist) {
+		
+		return canalRepository.findById(canalId)
+				.map(canal -> {
+					
+					canal.addPlaylist(playlist);
+					return canalRepository.save(canal);
+							
+				}).orElseThrow(() -> new ResourceNotFoundException("Página não encontrada"
+						+ canalId));
+		
+	}
+
+	@DeleteMapping("/canal/{canalId}/deletePlaylist")
+	public Canal deletePlaylist (@PathVariable Long canalId,
+			@Valid @RequestBody Playlist playlist) {
+		
+		return canalRepository.findById(canalId)
+				.map(canal -> {
+					
+					canal.removerPlaylist(playlist.getId());
+					return canalRepository.save(canal);
+							
+				}).orElseThrow(() -> new ResourceNotFoundException("Página não encontrada"
+						+ canalId));
+		
+	}
+
 }
