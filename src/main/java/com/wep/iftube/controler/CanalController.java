@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.wep.iftube.exception.ResourceNotFoundException;
 import com.wep.iftube.model.Canal;
+import com.wep.iftube.model.Playlist;
 import com.wep.iftube.repositories.CanalRepository;
+import com.wep.iftube.repositories.PlaylistRepository;
 
 @RestController
 public class CanalController {
@@ -41,6 +43,22 @@ public class CanalController {
 		return canalRepository.save(canal);
 
 	}
+	
+	@PostMapping("/canal/{canalId}/addPlaylist")
+	public Canal addPlaylist (@PathVariable Long canalId, 
+			@Valid @RequestBody Playlist playlist) {
+		
+		return canalRepository.findById(canalId)
+				.map(canal -> {
+					
+					canal.addPlaylist(playlist);
+					return canalRepository.save(canal);
+							
+				}).orElseThrow(() -> new ResourceNotFoundException("Página não encontrada"
+						+ canalId));
+		
+	}
+	
 	
 	@PutMapping("/canal/{canalId}")
 	public Canal updateCanal(@PathVariable Long canalId,

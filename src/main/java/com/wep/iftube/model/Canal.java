@@ -10,7 +10,7 @@ import net.bytebuddy.asm.Advice.AllArguments;
 @Entity
 public class Canal {
 	
-	@Id
+	@Id	
 	@GeneratedValue
 	private Long id;
 	
@@ -75,6 +75,12 @@ public class Canal {
 	public void setPlaylist(List<Playlist> playlist) {
 		this.playlist.clear();
 		this.playlist.addAll(playlist) ;
+	}
+	
+	public void addPlaylist( Playlist playlist ) {
+		
+		this.playlist.add(playlist);
+		
 	}
 
 }
