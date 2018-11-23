@@ -71,4 +71,16 @@ public class PLaylistController {
 		}).orElseThrow(() -> new ResourceNotFoundException("página não encontrada" + playId));
 	}
 	
+	@DeleteMapping("/playlist/{playId}/deleteVideo")
+	public Playlist deleteVideo(@PathVariable Long playId, @Valid @RequestBody Video video){
+		
+		return playlistRepository.findById(playId)
+				.map(playlist -> {
+					playlist.removerVideo(video);
+					
+					return playlistRepository.save(playlist);
+				}).orElseThrow(() -> new ResourceNotFoundException("página não encontrada" + playId));
+		
+	}
+	
 }

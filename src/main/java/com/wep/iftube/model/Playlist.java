@@ -50,5 +50,14 @@ public class Playlist {
 	public void addVideo(Video video) {
 		this.video.add(video);
 	}
+	
+	public void removerVideo(Video video) {
+		for (Video videoIndex : this.video) {
+			if(videoIndex.equals(video)) {
+				video = videoIndex;
+			}
+		}
+		this.video.remove(video);
+	}
 			
 }
