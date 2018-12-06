@@ -1,5 +1,7 @@
 package com.wep.iftube.controler;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +20,6 @@ import com.wep.iftube.exception.ResourceNotFoundException;
 import com.wep.iftube.model.Canal;
 import com.wep.iftube.model.Playlist;
 import com.wep.iftube.repositories.CanalRepository;
-import com.wep.iftube.repositories.PlaylistRepository;
 
 @RestController
 public class CanalController {
@@ -44,7 +45,18 @@ public class CanalController {
 
 	}
 	
+	@GetMapping("/canal/buscarName/{canalName}")
+	public Page<Canal> getOneCanal(@PathVariable String canalName,
+			Pageable pageable){   		
+	return canalRepository.findByNome(canalName, pageable);	
+	}
 	
+	@GetMapping("/canal/buscarEmail/{canalEmail}")
+	public Page<Canal> getOneCanalEmail(@PathVariable String canalEmail,
+			Pageable pageable){   		
+	return canalRepository.findByEmail(canalEmail, pageable);	
+	}
+
 		
 	@PutMapping("/canal/{canalId}")
 	public Canal updateCanal(@PathVariable Long canalId,

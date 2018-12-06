@@ -90,38 +90,27 @@
         <div class="container">
             <div class="main_content_section">
              <div class="main-content contact-sec">
-                <h1>digite o id do Canal aqui!</h1>
+                <h1>Digite o seu email aqui:</h1>
                 
 
                 <div class="col-md-5 contact-form">
                     <form>
                         <ul>
                             <li>
-                                <input type="text" id="id" placeholder="Digite seu id" required class="form-control">
+                                <input type="email" id="emailBusca" placeholder="Digite seu email" required class="form-control">
                             </li>
-                         <li><button class="submit-btn" type = "button" onclick="buscarCanal()" >buscar</button></li>
+                         <li><button class="submit-btn" type = "button" onclick="buscarCanalPorEmail()" >buscar</button></li>
 
                         </ul>
                     </form>
-                </div>
-                <div class="col-md-12 categories">
-                    <h2>Canais</h2>
-                   <table id='canais' class="table">
-                <tr>
-                    <th>id</th>
-                    <th>Nome do Canal</th>
-                    <th>email</th>
-                </tr>
-        
-                </table>
-                </div>
-               
-                
+                </div>                
                 <div class="contact-form">
                  <h1>Seu Canal!</h1>
                     <form>
                         <ul>
-                          
+                           <li>
+                                <input type="text" id="id" placeholder="id" required class="form-control" disabled>
+                            </li>
                             <li>
                                 <input type="text" id="nome" placeholder="Name" required class="form-control">
                             </li>
@@ -131,25 +120,18 @@
                             <li>
                                 <input type="password" id="senha" placeholder="password" required class="form-control">
                             </li>
-                            <li><button class="submit-btn" type = "button" onclick="update()" >atualizar</button></li>
-
+                            <li><button class="submit-btn" type = "button" onclick="update()" >atualizar</button><button class="submit-btn" type = "button" onclick="delet()" >deletar</button></li>
+							
                         </ul>
                     </form>
                 </div>
                 
-            </div>
-            </div>
-            </div>
-            </div>
-            </section>
-    <section class="blog-sec">
         <div class="container">
            
             
-            <div class="main-content contact-sec">
                 <h1>Atualizado!</h1>
                 
-      <div class="col-md-12 instragram">
+      <div class="col-md-6 instragram">
                                                  
                        <table id='canalUpdate' class="table">
                     <tr>
@@ -162,10 +144,16 @@
                     </div>
                 
             </div>
-                    
-              
-                </div>
-         </section>
+         
+         
+            </div>
+            </div>
+            </div>
+            </div>
+            
+            </section>
+          
+   
        <footer>  
         <div class="footer_copyright">
             <div class="container">
@@ -196,7 +184,7 @@
                 </div>
             </div>
         </div>
-           
+  
     </footer>
     <script type="text/javascript" src="js/jquery.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js">

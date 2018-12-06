@@ -47,7 +47,8 @@ function save(){
  xhr.onload = function(){
 		 
 		 if(this.status == 200){
-			 tabela();		 
+			 document.getElementById('tituloTabela').innerHTML = "Bem Vindo\n" + nome;
+			 	 
 		 }
 		 }
 		  
@@ -57,6 +58,7 @@ function save(){
 	
    
 }
+
 function tabela(){
 	 let recebe;
 	 let xhr = new XMLHttpRequest;
@@ -66,12 +68,12 @@ function tabela(){
 		 
 		 if(this.status == 200){
 			 recebe = JSON.parse(this.responseText);
-			 for (var i = 0; i < recebe.content.length; i++) {
+			/* for (var i = 0; i < recebe.content.length; i++) {
 				 
 				 document.getElementById('canais').innerHTML += " <tr><td> " + recebe.content[i].id + "</td>"
 				+ "<td>" + recebe.content[i].nome + "</td>"
 				+ "<td>" + recebe.content[i].email + "</td></tr>"; 
-			}
+			}*/
 		 }
 		 
 	 };
@@ -112,12 +114,12 @@ function update(){
 	  
 		 	 
 }
-function buscarCanal(){
+function buscarCanalPorEmail(){
 	 let recebe;
 	 let xhr = new XMLHttpRequest;
-     let  id =  document.getElementById('id').value;
+     let  email =  document.getElementById('emailBusca').value;
 
-	 xhr.open('GET','/canal/' + id);
+	 xhr.open('GET','/canal/buscarEmail/' + email);
 	 
 	 xhr.onload = function(){
 		 
@@ -125,15 +127,14 @@ function buscarCanal(){
 			 recebe = JSON.parse(this.responseText);
 			 console.log(recebe);
 //			 for (var i = 0; i < recebe.content.length; i++) {
-//				 let nome = document.getElementById("nome");
+				let id = document.getElementById("id");
 				let email = document.getElementById("email");
 				let senha = document.getElementById("senha");
-				nome.value = recebe.nome;
-				email.value = recebe.email;
-				senha.value = recebe.senha;
-				
-				
-		    
+				nome.value = recebe.content[0].nome;
+				email.value = recebe.content[0].email;
+				senha.value = recebe.content[0].senha;
+				id.value = recebe.content[0].id;
+					    
 				 
 //			}
 		 }
@@ -142,3 +143,28 @@ function buscarCanal(){
 	 xhr.onerro = () => alert('ERRO');
 	 xhr.send();
 	}
+
+function delet(){
+	 let xhr = new XMLHttpRequest;
+
+	let  id =  document.getElementById('id').value;
+	xhr.open('DELETE',"/canal/" + id);
+	
+	xhr.onload = function(){
+		 
+		 if(this.status == 200){
+		  alert('Deletado');
+		    let  id =  document.getElementById('id');
+		    let email = document.getElementById("email");
+			let senha = document.getElementById("senha");
+			nome.value = "";
+			email.value = "";
+			senha.value = "";
+			id.value = "";
+		 }
+		}
+	
+	 xhr.onerro = () => alert('ERRO');
+	 xhr.send();
+	 console.log('Deletado');
+}

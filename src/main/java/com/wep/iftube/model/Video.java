@@ -25,6 +25,10 @@ public class Video {
 	@Column
 	private Long visualizacoes;
 	
+	@Column
+	private String url;
+	
+	
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Chat> chat = new ArrayList<Chat>();
 	
@@ -88,4 +92,12 @@ public class Video {
 		this.dataDePostagem = dataDePostagem;
 	}
 	
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
 }

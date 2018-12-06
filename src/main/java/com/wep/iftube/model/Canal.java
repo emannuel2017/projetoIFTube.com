@@ -11,7 +11,7 @@ import net.bytebuddy.asm.Advice.AllArguments;
 public class Canal {
 	
 	@Id	
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue
 	private Long id;
 	
 	@Column
