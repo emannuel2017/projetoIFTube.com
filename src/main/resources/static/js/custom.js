@@ -43,11 +43,18 @@ function save(){
 			"email":`${email}`,
 			"senha":`${senha}`
 		  };
+	
+ xhr.onload = function(){
+		 
+		 if(this.status == 200){
+			 tabela();		 
+		 }
+		 }
 		  
 	xhr.onerro = () => alert('ERRO');
 	xhr.send(JSON.stringify(novo));
 	console.log('Sucesso salvo');
-	tabela();
+	
    
 }
 function tabela(){

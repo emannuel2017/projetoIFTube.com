@@ -11,7 +11,7 @@ import net.bytebuddy.asm.Advice.AllArguments;
 public class Canal {
 	
 	@Id	
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	@Column
@@ -42,7 +42,7 @@ public class Canal {
 		return email;
 	}
 	public void setEmail(String email) {
-		this.email = email;
+	this.email = email;
 	}
 	public String getSenha() {
 		return senha;
