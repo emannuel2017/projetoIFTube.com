@@ -81,7 +81,18 @@ public class ServicoValidacaoTeste {
     	ServicoValidacao servico = new ServicoValidacao();
     	String nome = "123321";
     	String email = "123teste.com";
-    	String senha = "2314";
+    	String senha = "2018";
+		
+    	boolean ehCanalValido = servico.validarCanal(nome, email, senha);    	
+    	assertEquals(false, ehCanalValido);
+	}
+    
+    @Test
+    public void naoPodeValidarSenhaComMaisDe20Carecteres() {
+    	ServicoValidacao servico = new ServicoValidacao();
+    	String nome = "123321";
+    	String email = "123teste.com";
+    	String senha = "uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu";
 		
     	boolean ehCanalValido = servico.validarCanal(nome, email, senha);    	
     	assertEquals(false, ehCanalValido);
@@ -110,23 +121,14 @@ public class ServicoValidacaoTeste {
 
     }
     
-    @Test
-    public void naoPodeValidarSenhaComMaisDe20Carecteres() {
-    	ServicoValidacao servico = new ServicoValidacao();
-    	String nome = "123321";
-    	String email = "123teste.com";
-    	String senha = "qwertyuiopasdfghjklçz";
-		
-    	boolean ehCanalValido = servico.validarCanal(nome, email, senha);    	
-    	assertEquals(false, ehCanalValido);
-	}
+    
     
     @Test
 	public void permitirValidarComTudoCorreto() {
     	ServicoValidacao servico = new ServicoValidacao();
-    	String nome = " Amanuel";
-    	String email = "Emanuel123@gmail.com";
-    	String senha = "qwertyuiopasdfghj";
+    	String nome = " arnold schwarzenegger";
+    	String email = "terminatoT800@gmail.com";
+    	String senha = "hastalavistababy";
 		
     	boolean ehCanalValido = servico.validarCanal(nome, email, senha);    	
     	assertEquals(true, ehCanalValido);

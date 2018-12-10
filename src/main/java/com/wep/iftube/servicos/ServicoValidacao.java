@@ -16,7 +16,7 @@ public class ServicoValidacao {
 	private static Matcher matcher;
 	
 	public boolean validarCanal( String nome, String email, String senha ) {
-		if(validarNome(nome) && validarEmail(email) && !validarSenha(senha))
+		if(validarNome(nome) && validarEmail(email) && validarSenha(senha))
 		return true;
 		
 		return false;
@@ -36,11 +36,11 @@ public class ServicoValidacao {
 	}
     
     public boolean validarSenha(String senha) {
-    	if(senha.isEmpty() 
-    			&& (senha.length() <= 8) 
-    			&& (senha.length() >= 20) 
-    			&& (senha.contains("12345678"))
-    			&& (senha.contains("87654321")))
+    	if(!senha.isEmpty() 
+    			&& (senha.length() >= 8) 
+    			&& (senha.length() <= 20) 
+    			&& (!senha.contains("12345678"))
+    			&& (!senha.contains("87654321")))
     	return true;
     	
     	return false;
