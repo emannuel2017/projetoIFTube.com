@@ -90,12 +90,36 @@
         <div class="container">
             <div class="main_content_section">
             <div class="main-content contact-sec">
-                <h1>Cadastre seu Canal aqui!</h1>
                 
 
-                <div class="contact-form">
+                <div id ="cadastroCanal" class="contact-form">
+                                <h1>Cadastre seu Canal aqui!</h1>
+                
                     <form>
                         <ul>
+                            <li>
+                                <input type="text" id="nome-cadastro" placeholder="Name" required class="form-control">
+                            </li>
+                            <li>
+                                <input type="email" id="email-cadastro" placeholder="Email" required class="form-control">
+                            </li>
+                            <li>
+                                <input type="password" id="senha-cadastro" placeholder="password" required class="form-control">
+                            </li>
+                            <li><button class="submit-btn" type="button" onclick="save()" >submit</button></li>
+
+                        </ul>
+                    </form>
+                </div>
+               
+                
+                <div id = info-canal class="contact-form">
+                 <h1>Seu Canal!</h1>
+                    <form>
+                        <ul>
+                           <li>
+                                <input type="text" id="id" placeholder="id" required class="form-control" disabled>
+                            </li>
                             <li>
                                 <input type="text" id="nome" placeholder="Name" required class="form-control">
                             </li>
@@ -105,58 +129,19 @@
                             <li>
                                 <input type="password" id="senha" placeholder="password" required class="form-control">
                             </li>
-                            <li><button class="submit-btn" type="button" onclick="save()" >submit</button></li>
-
+                            <li><button class="submit-btn" type = "button" onclick="update()" >atualizar</button><button class="submit-btn" type = "button" onclick="delet()" >deletar</button></li>
+							
                         </ul>
                     </form>
                 </div>
                
             </div>
-            <aside class="aside-sec">
-                <div class="ads-sec">
-                    <h2 id = "tituloTabela">Faça sua Conta</h2>
-                   <div class="p_post-item">
-                        <div class="img-sec">
-                            <img src="images/pop-post1.jpg" alt="pop-post">
-                            <a href="#" class="category-ttl">Health</a>
-                        </div>
-                        <ul class="post-tools">
-                            <li class="admin"><a href="#">Admin </a></li>
-                            <li class="date">23 Jan 2018</li>
-                        </ul>
-                    </div>
-             
-                </div>
-                <div class="popular-posts">
-                    <h2>Popular Posts</h2>
-                   
-                    <div class="p_post-item">
-                        <div class="img-sec">
-                            <img src="images/pop-post2.jpg" alt="pop-post">
-                            <a href="#" class="category-ttl">Health</a>
-                        </div>
-                        <h3>Girl walking on the road in early morning for mood.</h3>
-                        <h6>Lorem Ipsum is simply dummy text of the printing and typesetbeen the industry's standard dummy text ever since the 1500s, when an unknown printer</h6>
-                        <ul class="post-tools">
-                            <li class="admin"><a href="#">Admin </a></li>
-                            <li class="date">23 Jan 2018</li>
-                        </ul>
-                    </div>
-                    <div class="p_post-item">
-                        <div class="img-sec">
-                            <img src="images/pop-post1.jpg" alt="pop-post">
-                            <a href="#" class="category-ttl">Health</a>
-                        </div>
-                        <h3>Girl walking on the road in early morning for mood.</h3>
-                        <h6>Lorem Ipsum is simply dummy text of the printing and typesetbeen the industry's standard dummy text ever since the 1500s, when an unknown printer</h6>
-                        <ul class="post-tools">
-                            <li class="admin"><a href="#">Admin </a></li>
-                            <li class="date">23 Jan 2018</li>
-                        </ul>
-                    </div>
-                </div>
-            </aside>
-             </div>
+            
+           
+            
+         
+         
+         </div>
         </div>
     </section>
     <footer>

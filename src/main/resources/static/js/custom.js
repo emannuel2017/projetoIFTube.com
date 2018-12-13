@@ -34,9 +34,9 @@ function save(){
 	
 	
 	
-	let nome = document.getElementById('nome').value;
-	let email = document.getElementById('email').value;
-    let senha = document.getElementById('senha').value;
+	let nome = document.getElementById('nome-cadastro').value;
+	let email = document.getElementById('email-cadastro').value;
+    let senha = document.getElementById('senha-cadastro').value;
 	
 	let novo = {
 			"nome": `${nome}`,
@@ -47,16 +47,35 @@ function save(){
  xhr.onload = function(){
 		 
 		 if(this.status == 200){
-			 document.getElementById('tituloTabela').innerHTML = "Bem Vindo\n" + nome;
-			 	 
+			 esconderDivCadastro();
+			 buscarCanalPorEmail();
 		 }
-		 }
+		}
 		  
 	xhr.onerro = () => alert('ERRO');
 	xhr.send(JSON.stringify(novo));
 	console.log('Sucesso salvo');
 	
    
+}
+
+function esconderDivPerfil(){
+	let div = document.getElementById('info-canal');
+	div.style.display = "none";
+	div.style.visibility = "hidden";
+}
+
+function esconderDivCadastro(){
+	let div = document.getElementById('cadastroCanal');
+	div.style.display = "none";
+	div.style.visibility = "hidden";
+	
+    div = document.getElementById('info-canal');
+    div.style.display = "block";
+	div.style.visibility = "visible";
+	
+	
+	
 }
 
 function tabela(){
@@ -117,7 +136,7 @@ function update(){
 function buscarCanalPorEmail(){
 	 let recebe;
 	 let xhr = new XMLHttpRequest;
-     let  email =  document.getElementById('emailBusca').value;
+     let  email =  document.getElementById('email-cadastro').value;
 
 	 xhr.open('GET','/canal/buscarEmail/' + email);
 	 
@@ -168,3 +187,4 @@ function delet(){
 	 xhr.send();
 	 console.log('Deletado');
 }
+esconderDivPerfil();
