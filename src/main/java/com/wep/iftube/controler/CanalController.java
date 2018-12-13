@@ -56,8 +56,12 @@ public class CanalController {
 			Pageable pageable){   		
 	return canalRepository.findByEmail(canalEmail, pageable);	
 	}
-
-		
+	@GetMapping("/canal/buscarSenha/{canalSenha}")
+	public Page<Canal> getOneCanalSenha(@PathVariable String canalSenha,
+			Pageable pageable){   		
+	return canalRepository.findBySenha(canalSenha, pageable);	
+	}
+			
 	@PutMapping("/canal/{canalId}")
 	public Canal updateCanal(@PathVariable Long canalId,
 			@Valid @RequestBody Canal canalRequest) {

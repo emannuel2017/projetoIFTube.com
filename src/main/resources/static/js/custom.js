@@ -3,8 +3,8 @@
 $(window).scroll(function() {
 
 	if ($(window).scrollTop() > 44) {
-				$('.main-menu').addClass("active");
-				$('header').addClass("active");
+		$('.main-menu').addClass("active");
+		$('header').addClass("active");
 	}
 	else{
 		$('.main-menu').removeClass("active");
@@ -12,51 +12,51 @@ $(window).scroll(function() {
 	}
 });
 
-//  if (screen.width > 1024) {
-// if ( $('.portipolio-sec').length > 0 ) {
+//if (screen.width > 1024) {
+//if ( $('.portipolio-sec').length > 0 ) {
 
-//    AOS.init({
-//         easing: 'ease-in-out-sine'
-//       });
-// }
-//  }
+//AOS.init({
+//easing: 'ease-in-out-sine'
+//});
+//}
+//}
 
 if ( $('.videos-sec').length > 0 ) {
 	$.wmBox();
 }
 
 function save(){
-    let xhr = new XMLHttpRequest;
+	let xhr = new XMLHttpRequest;
 
 	xhr.open('POST','/canal');
 
 	xhr.setRequestHeader('Content-Type', 'application/json');
-	
-	
-	
+
+
+
 	let nome = document.getElementById('nome-cadastro').value;
 	let email = document.getElementById('email-cadastro').value;
-    let senha = document.getElementById('senha-cadastro').value;
-	
+	let senha = document.getElementById('senha-cadastro').value;
+
 	let novo = {
 			"nome": `${nome}`,
 			"email":`${email}`,
 			"senha":`${senha}`
-		  };
-	
- xhr.onload = function(){
-		 
-		 if(this.status == 200){
-			 esconderDivCadastro();
-			 buscarCanalPorEmail();
-		 }
+	};
+
+	xhr.onload = function(){
+
+		if(this.status == 200){
+			esconderDivCadastro();
+			buscarCanalPorEmail();
 		}
-		  
+	}
+
 	xhr.onerro = () => alert('ERRO');
 	xhr.send(JSON.stringify(novo));
 	console.log('Sucesso salvo');
-	
-   
+
+
 }
 
 function esconderDivPerfil(){
@@ -69,122 +69,151 @@ function esconderDivCadastro(){
 	let div = document.getElementById('cadastroCanal');
 	div.style.display = "none";
 	div.style.visibility = "hidden";
-	
-    div = document.getElementById('info-canal');
-    div.style.display = "block";
+
+	div = document.getElementById('info-canal');
+	div.style.display = "block";
 	div.style.visibility = "visible";
-	
-	
-	
+
+
+
 }
 
 function tabela(){
-	 let recebe;
-	 let xhr = new XMLHttpRequest;
-	 xhr.open('GET','/canal');
-	 
-	 xhr.onload = function(){
-		 
-		 if(this.status == 200){
-			 recebe = JSON.parse(this.responseText);
+	let recebe;
+	let xhr = new XMLHttpRequest;
+	xhr.open('GET','/canal');
+
+	xhr.onload = function(){
+
+		if(this.status == 200){
+			recebe = JSON.parse(this.responseText);
 			/* for (var i = 0; i < recebe.content.length; i++) {
-				 
+
 				 document.getElementById('canais').innerHTML += " <tr><td> " + recebe.content[i].id + "</td>"
 				+ "<td>" + recebe.content[i].nome + "</td>"
 				+ "<td>" + recebe.content[i].email + "</td></tr>"; 
 			}*/
-		 }
-		 
-	 };
-	 xhr.onerro = () => alert('ERRO');
-	 xhr.send();
-	}
+		}
+
+	};
+	xhr.onerro = () => alert('ERRO');
+	xhr.send();
+}
 
 function update(){
-	
+
 	let xhr = new XMLHttpRequest;
 	let  id =  document.getElementById('id').value;
 	xhr.open('PUT',"/canal/" + id)
 	xhr.setRequestHeader('Content-Type','application/json');
-	
-	 let nome = document.getElementById('nome').value;
-	 let email = document.getElementById('email').value;
-	 
-	
-	 
-	 let novo = {
-			 "nome": `${nome}`,
-	         "email":`${email}`
-	       };
- xhr.onload = function(){
-		 
-		 if(this.status == 200){
+
+	let nome = document.getElementById('nome').value;
+	let email = document.getElementById('email').value;
+
+
+
+	let novo = {
+			"nome": `${nome}`,
+			"email":`${email}`
+	};
+	xhr.onload = function(){
+
+		if(this.status == 200){
 			let recebe = JSON.parse(this.responseText);
- 
-		    document.getElementById('canalUpdate').innerHTML += " <tr><td> " + recebe.id + "</td>"
+
+			document.getElementById('canalUpdate').innerHTML += " <tr><td> " + recebe.id + "</td>"
 			+ "<td>" + recebe.nome + "</td>"
 			+ "<td>" + recebe.email + "</td></tr>";
-		 }
+		}
 	}
-	 
-	 xhr.onerro = () => alert('ERRO');
-	 xhr.send(JSON.stringify(novo));
-	 console.log('Sucesso salvo');
-	  
-		 	 
+
+	xhr.onerro = () => alert('ERRO');
+	xhr.send(JSON.stringify(novo));
+	console.log('Sucesso salvo');
+
+
 }
 function buscarCanalPorEmail(){
-	 let recebe;
-	 let xhr = new XMLHttpRequest;
-     let  email =  document.getElementById('email-cadastro').value;
+	let recebe;
+	let xhr = new XMLHttpRequest;
+	let  email =  document.getElementById('email-cadastro').value;
 
-	 xhr.open('GET','/canal/buscarEmail/' + email);
-	 
-	 xhr.onload = function(){
-		 
-		 if(this.status == 200){
-			 recebe = JSON.parse(this.responseText);
-			 console.log(recebe);
-//			 for (var i = 0; i < recebe.content.length; i++) {
-				let id = document.getElementById("id");
-				let email = document.getElementById("email");
-				let senha = document.getElementById("senha");
-				nome.value = recebe.content[0].nome;
-				email.value = recebe.content[0].email;
-				senha.value = recebe.content[0].senha;
-				id.value = recebe.content[0].id;
-					    
-				 
+	xhr.open('GET','/canal/buscarEmail/' + email);
+
+	xhr.onload = function(){
+
+		if(this.status == 200){
+			recebe = JSON.parse(this.responseText);
+			console.log(recebe);
+//			for (var i = 0; i < recebe.content.length; i++) {
+			let id = document.getElementById("id");
+			let email = document.getElementById("email");
+			let senha = document.getElementById("senha");
+			nome.value = recebe.content[0].nome;
+			email.value = recebe.content[0].email;
+			senha.value = recebe.content[0].senha;
+			id.value = recebe.content[0].id;
+
+
 //			}
-		 }
-		 
-	 };
-	 xhr.onerro = () => alert('ERRO');
-	 xhr.send();
-	}
+		}
+
+	};
+	xhr.onerro = () => alert('ERRO');
+	xhr.send();
+}
 
 function delet(){
-	 let xhr = new XMLHttpRequest;
+	let xhr = new XMLHttpRequest;
 
 	let  id =  document.getElementById('id').value;
 	xhr.open('DELETE',"/canal/" + id);
-	
+
 	xhr.onload = function(){
-		 
-		 if(this.status == 200){
-		  alert('Deletado');
-		    let  id =  document.getElementById('id');
-		    let email = document.getElementById("email");
+
+		if(this.status == 200){
+			alert('Deletado');
+			let  id =  document.getElementById('id');
+			let email = document.getElementById("email");
 			let senha = document.getElementById("senha");
 			nome.value = "";
 			email.value = "";
 			senha.value = "";
 			id.value = "";
-		 }
 		}
-	
-	 xhr.onerro = () => alert('ERRO');
-	 xhr.send();
-	 console.log('Deletado');
+	}
+
+	xhr.onerro = () => alert('ERRO');
+	xhr.send();
+	console.log('Deletado');
 }
+
+function logar(){ 
+	let email = document.getElementById('email-login').value;
+	let senha = document.getElementById('senha-login').value;
+
+
+	let xhr = new XMLHttpRequest;
+	xhr.open('GET','/canal/buscarEmail/' + email);
+
+	xhr.onload = function(){
+
+		if(this.status == 200){
+
+			if(this.status != 200){
+				alert("erro");
+			}else{alert("ok");}
+		}
+
+	}	
+	xhr.onerro = () => alert('ERRO');
+	xhr.send();
+}
+
+
+
+
+
+
+
 esconderDivPerfil();
