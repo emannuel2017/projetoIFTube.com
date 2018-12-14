@@ -25,6 +25,13 @@ if ( $('.videos-sec').length > 0 ) {
 	$.wmBox();
 }
 
+function get(){
+	fetch("/canal").then(function(response){
+			console.log("ok");
+		});
+	}
+get();
+
 function save(){
 	let xhr = new XMLHttpRequest;
 
@@ -63,6 +70,9 @@ function esconderDivPerfil(){
 	let div = document.getElementById('info-canal');
 	div.style.display = "none";
 	div.style.visibility = "hidden";
+    div = document.getElementById('cadastroCanal');
+	div.style.display = "none";
+	div.style.visibility = "hidden";
 }
 
 function esconderDivCadastro(){
@@ -73,10 +83,9 @@ function esconderDivCadastro(){
 	div = document.getElementById('info-canal');
 	div.style.display = "block";
 	div.style.visibility = "visible";
-
-
-
 }
+
+
 
 function tabela(){
 	let recebe;
@@ -192,26 +201,50 @@ function logar(){
 	let email = document.getElementById('email-login').value;
 	let senha = document.getElementById('senha-login').value;
 
+	let canal = {
+		'email':`${email}`,
+		'senha':`${senha}`
+	};
 
 	let xhr = new XMLHttpRequest;
-	xhr.open('GET','/canal/buscarEmail/' + email);
+	xhr.open('POST','/canal');
+
+	xhr.setRequestHeader('Content-Type', 'application/json');
+
+
 
 	xhr.onload = function(){
 
 		if(this.status == 200){
+			recebe = JSON.parse(this.responseText);
+			console.log(recebe);
+//			for (var i = 0; i < recebe.content.length; i++) {
+			let id = document.getElementById("id");
+			let email = document.getElementById("email");
+			let senha = document.getElementById("senha");
+			nome.value = recebe.nome;
+			email.value = recebe.email;
+			senha.value = recebe.senha;
+			id.value = recebe.id;
+			let div = document.getElementById('login');
+			div.style.display = "none";
+			div.style.visibility = "hidden";
+			esconderDivCadastro();
 
-			if(this.status != 200){
-				alert("erro");
-			}else{alert("ok");}
 		}
 
 	}	
 	xhr.onerro = () => alert('ERRO');
-	xhr.send();
+	xhr.send(JSON.stringify(canal));
 }
 
 
-
+function exibirDivCadastro(){
+	let div = document.getElementById('cadastroCanal');
+	div.style.display = "none";
+	div.style.visibility = "hidden";
+	
+}
 
 
 

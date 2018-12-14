@@ -1,6 +1,7 @@
 package com.wep.iftube.controler;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.validation.Valid;
 
@@ -45,6 +46,11 @@ public class CanalController {
 
 	}
 	
+	@PostMapping("/canal/login")
+	public Canal login(Map<String, String> parametro){
+		return canalRepository.findByEmailAndSenha(parametro.get("nome"),parametro.get("senha"));
+	}
+	
 	@GetMapping("/canal/buscarName/{canalName}")
 	public Page<Canal> getOneCanal(@PathVariable String canalName,
 			Pageable pageable){   		
@@ -61,6 +67,8 @@ public class CanalController {
 			Pageable pageable){   		
 	return canalRepository.findBySenha(canalSenha, pageable);	
 	}
+	
+	
 			
 	@PutMapping("/canal/{canalId}")
 	public Canal updateCanal(@PathVariable Long canalId,

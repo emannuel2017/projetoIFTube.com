@@ -17,4 +17,6 @@ public interface CanalRepository extends JpaRepository<Canal, Long>{
 	Canal findByEmail(String email);
 	Canal findBySenha(String senha);
 	
+	Canal findByEmailAndSenha(String nome, String senha);
+	
 }
