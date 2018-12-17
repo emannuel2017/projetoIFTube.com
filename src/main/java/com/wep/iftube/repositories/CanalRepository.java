@@ -13,5 +13,10 @@ public interface CanalRepository extends JpaRepository<Canal, Long>{
  
 	Page<Canal> findByNome(String nome,Pageable pageable);
 	Page<Canal> findByEmail(String email,Pageable pageable);
+	Page<Canal> findBySenha(String senha,Pageable pageable);
+	Canal findByEmail(String email);
+	Canal findBySenha(String senha);
+	
+	Canal findByEmailAndSenha(String nome, String senha);
 	
 }
