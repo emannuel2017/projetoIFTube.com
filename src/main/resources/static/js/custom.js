@@ -66,33 +66,35 @@ function save(){
 }
 
 function esconderDivPerfil(){
-	let div = document.getElementById('info-canal');
+	esconderDiv('opcoesPlaylist');
+	esconderDiv('cadastroCanal');
+	esconderDiv('cadastroPlaylist');
+	esconderDiv('info-canal');
+	esconderDiv('cadastroVideos');
+	esconderDiv('canal-main');
+	console.log('esconde');
+}
+
+function esconderDiv(recebe){
+	let div = document.getElementById(recebe);
 	div.style.display = "none";
 	div.style.visibility = "hidden";
-	div = document.getElementById('cadastroCanal');
-	div.style.display = "none";
-	div.style.visibility = "hidden";
+}
+
+function exebirDiv(recebe){
+	let div = document.getElementById(recebe);
+	div.style.display = "block";
+	div.style.visibility = "visible";
 }
 
 function esconderDivCadastro(){
-	let div = document.getElementById('cadastroCanal');
-	div.style.display = "none";
-	div.style.visibility = "hidden";
+	 esconderDiv('cadastroCanal');
+	 exebirDiv('info-canal');
+	}
 
-	div = document.getElementById('info-canal');
-	div.style.display = "block";
-	div.style.visibility = "visible";
-}
-
-function mostarFormularioDeCadastro(){
-	let div = document.getElementById('cadastroCanal');
-	div.style.display = "block";
-	div.style.visibility = "visible";
-
-	div = document.getElementById('login');
-	div.style.display = "none";
-	div.style.visibility = "hidden";
-
+function mostarFormularioDeCadastro(){	
+	 exebirDiv('cadastroCanal');
+	 esconderDiv('login');	 
 }
 
 function tabela(){
@@ -139,8 +141,8 @@ function update(){
 			let recebe = JSON.parse(this.responseText);
 
 			document.getElementById('canalUpdate').innerHTML += " <tr><td> " + recebe.id + "</td>"
-			+ "<td>" + recebe.nome + "</td>"
-			+ "<td>" + recebe.email + "</td></tr>";
+			+ " <td> " + recebe.nome + " </td>"
+			+ " <td> " + recebe.email + " </td></tr>";
 		}
 	}
 
@@ -209,10 +211,15 @@ function delet(){
 }
 
 function logar(){ 
+	buscarCanalPorEmail();
 	let email = document.getElementById('email-login').value;
 	let senha = document.getElementById('senha-login').value;
-
+    let nome = localStorage.getItem("nome");
+	
+	
+	
 	let canal = {
+			'nome':`${nome}`,
 			'email':`${email}`,
 			'senha':`${senha}`
 	};
@@ -232,15 +239,15 @@ function logar(){
 //			for (var i = 0; i < recebe.content.length; i++) {
 			let id = document.getElementById("id");
 			let nome = document.getElementById("nome");
+			
 			let email = document.getElementById("email");
 			let senha = document.getElementById("senha");
 			nome.value = recebe.nome;
 			email.value = recebe.email;
 			senha.value = recebe.senha;
 			id.value = recebe.id;
-			let div = document.getElementById('login');
-			div.style.display = "none";
-			div.style.visibility = "hidden";
+			esconderDiv('login');
+			exebirDiv('canal-main');
 			esconderDivCadastro();
 
 		}
@@ -260,7 +267,13 @@ function exibirDivCadastro(){
 
 function carregarOpacaoDeUsuario(){
 
+}
 
+
+function visualizarOpcaoDePlaylist(){
+	exebirDiv('opcoesPlaylist');
+	exebirDiv('cadastroVideos');
+	visualizarTodasPaylist();
 }
 
 
@@ -275,14 +288,12 @@ function addPlaylist(){
 	http.onload = function(){
 
 		if(this.status == 200){
-			document.getElementById('lista-playlist').innerHTML =""; 
-			document.getElementById('lista-playlist').innerHTML +="<div class=\"card\">"
+			document.getElementById('lista-playlist-salva').innerHTML =""; 
+			document.getElementById('lista-playlist-salva').innerHTML +="<div class=\"card\">"
 				+"<div class=\"card-body\">" + nome  + " Salva com sucesso! </div>"
 				+"</div>"
 		}
 	}
-
-	
 
 	let playlist = {
 			'nome' : `${nome}`	
@@ -298,17 +309,19 @@ function visualizarTodasPaylist(){
 
 	let id = localStorage.getItem("id");
 	http.open('GET','/playlist');
-
+	document.getElementById('todas-playlist').innerHTML ="";
 	http.onload = function(){
 
 		if(this.status == 200){
 			let playlists = JSON.parse(this.responseText);
 			for(let i = 0; i < playlists.content.length; i++){
-			console.log(playlists);
-			document.getElementById('lista-playlist').innerHTML +="<div class=\"card\">"
-			+"<div class=\"card-body\">" + playlists.content[i].nome + "</div>"
-			+"</div>"
+				console.log(playlists);
+
+				document.getElementById('todas-playlist').innerHTML +="<div class=\"card\">"
+					+"<div class=\"card-body\">id: " + playlists.content[i].id + " nome: " + playlists.content[i].nome + "</div>"
+					+"</div>"
 			}
+			exebirDiv('cadastroPlaylist');
 		}
 	}
 	http.onerro = () => alert('ERRO');
@@ -326,11 +339,11 @@ function visualizarPaylistSalva(){
 		if(this.status == 200){
 			let playlists = JSON.parse(this.responseText);
 			for(let i = 0; i < playlists.content.length; i++){
-			console.log(playlists);
-			document.getElementById('lista-playlist').innerHTML +="<div class=\"card\">"
-			+"<div class=\"card-body\">" + playlists.content[i].nome + "</div>"
-			+"<div class=\"card-body\">" + playlists.content[i].video[i] + "</div>"
-			+"</div>"
+				console.log(playlists);
+				document.getElementById('lista-playlist').innerHTML +="<div class=\"card\">"
+					+"<div class=\"card-body\">" + playlists.content[i].nome + "</div>"
+					+"<div class=\"card-body\">" + playlists.content[i].video[i] + "</div>"
+					+"</div>"
 			}
 		}
 	}
@@ -338,4 +351,144 @@ function visualizarPaylistSalva(){
 	http.send();
 }
 
+function buscarPlaylist(){
+	let http = new XMLHttpRequest;
+
+	let id = document.getElementById("id-playlist").value;
+	http.open('GET','/playlist/'+ id);
+
+	http.onload = function(){
+
+		if(this.status == 200){
+
+			let playlists = JSON.parse(this.responseText);
+			let nome = document.getElementById("nome-playlist-atualizado");
+			nome.value = playlists.nome;
+			id.value = playlists.id;
+			console.log(playlists);
+		}
+	}
+
+	http.onerro = () => alert('ERRO');
+	http.send();
+
+
+}
+
+function atualizarPlaylist(){
+	let http = new XMLHttpRequest;
+	let nome = document.getElementById("nome-playlist-atualizado").value;
+	let id = document.getElementById("id-playlist").value;
+
+	http.open('PUT','/playlist/'+id);
+	http.setRequestHeader('Content-Type', 'application/json');
+
+	http.onload = function(){
+
+		if(this.status == 200){
+			document.getElementById('lista-playlist').innerHTML =""; 
+			document.getElementById('lista-playlist').innerHTML +="<div class=\"card\">"
+				+"<div class=\"card-body\">" + nome  + " Atualizada com sucesso! </div>"
+				+"</div>"
+				visualizarTodasPaylist();
+		}
+	}
+
+	let playlist = {
+			'nome' : `${nome}`	
+	};
+
+	http.onerro = () => alert('ERRO');
+	http.send(JSON.stringify(playlist));
+}
+
+function deletarPlaylist(){
+	let http = new XMLHttpRequest;
+	let id = localStorage.getItem("id");
+    let idPlaylist = document.getElementById('id-playlist').value;
+	http.open('DELETE','/canal/'+id+'/deletePlaylist');
+	http.setRequestHeader('Content-Type', 'application/json');
+
+	http.onload = function(){
+
+		if(this.status == 200){
+			document.getElementById('lista-playlist').innerHTML =""; 
+			document.getElementById('lista-playlist').innerHTML +="<div class=\"card\">"
+				+"<div class=\"card-body\"> Deletada com sucesso! </div>"
+				+"</div>"
+				visualizarTodasPaylist();
+
+		}
+	}
+
+	let playlist = {
+			'id' : `${idPlaylist}`	
+	};
+
+	http.onerro = () => alert('ERRO');
+	http.send(JSON.stringify(playlist));
+}
+
+function addVideo(){
+	let http = new XMLHttpRequest;
+	let titulo = document.getElementById('titulo-video').value;
+	let url = document.getElementById('url-video').value;
+	let id = document.getElementById('id-playlist').value;
+	console.log(id);
+	http.open('POST','/playlist/'+id+'/addVideo');
+	http.setRequestHeader('Content-Type', 'application/json');
+
+	http.onload = function(){
+
+		if(this.status == 200){
+			document.getElementById('lista-video-salva').innerHTML =""; 
+			document.getElementById('lista-video-salva').innerHTML +="<div class=\"card\">"
+				+"<div class=\"card-body\">" + titulo  + " Salva com sucesso! </div>"
+				+"</div>"
+		}
+	}
+
+	let video = {
+			'titulo' : `${titulo}`,
+			'url' : `${url}`
+	};
+
+	http.onerro = () => alert('ERRO');
+	http.send(JSON.stringify(video));
+}
+
+function carregarTodosOsVideos(){
+	let http = new XMLHttpRequest; 		
+	http.open('GET','/video');
+
+	http.onload = function(){
+
+		if(this.status == 200){
+			let videos = JSON.parse(this.responseText);
+			console.log(videos);
+			for(let i = 0; i < videos.content.length; i++){
+				document.getElementById('video-player').innerHTML +="<ul><li>"
+					+"<div  class=\"video-item \">"
+					+"<iframe width=\"420\" height=\"315"
+					+"src=\"https://www.youtube.com/embed/"+videos.content[i].url+"\">"
+					+"</iframe>"
+					+"</div></li></ul>"    
+			}
+		}
+	}
+	http.onerro = () => alert('ERRO');
+	http.send();
+
+}
+
+
+function carregarVideos(){
+	location.href="videos.html";
+}
+
+function confirmar(){
+	esconderDiv('info-canal');
+	document.getElementById("canal-nome").innerHTML = "";
+	document.getElementById("canal-nome").innerHTML = localStorage.getItem("nome");
+}
 esconderDivPerfil();

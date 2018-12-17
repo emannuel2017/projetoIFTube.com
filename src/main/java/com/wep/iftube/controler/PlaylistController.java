@@ -30,6 +30,12 @@ public class PlaylistController {
 		return playlistRepository.findAll(pageable);
 	}
 	
+	@GetMapping("/playlist/{playlistId}")
+	public Playlist getPLaylist(@PathVariable Long playlistId){
+		return playlistRepository.findById(playlistId)
+				.orElseThrow(() -> new ResourceNotFoundException("página não encontrada" + playlistId));
+	}
+	
 	@PostMapping("/playlist")
 	public Playlist savePLaylist(@Valid @RequestBody Playlist playlist) {
 		return playlistRepository.save(playlist);

@@ -106,7 +106,7 @@
 					<div id="cadastroCanal" class="contact-form">
 						<h1>Cadastre seu canal aqui!</h1>
 
-						<form>
+						<form autocomplete="on">
 							<ul>
 								<li><input type="text" id="nome-cadastro"
 									placeholder="Name" required class="form-control"></li>
@@ -123,7 +123,7 @@
 
 
 					<div id="info-canal" class="contact-form">
-						<h1>Seu canal!</h1>
+						<h1 >Seu canal!</h1>
 						<h1>Confirme seus dados</h1>
 						<form>
 							<ul>
@@ -142,10 +142,11 @@
 								</li>
 								<li>
 									<button class="submit-btn" type="button"
-										onclick="carregarOpacaoDeUsuario()">Confirmar</button>
+										onclick="confirmar()">Confirmar</button>
 								</li>
 							</ul>
 						</form>
+						<div id="canalUpdate"></div>
 					</div>
 
 
@@ -161,7 +162,7 @@
 
 	<section class="blog-sec">
 		<div class="container">
-			<div class="main-content">
+			<div id="canal-main" class="main-content">
 				<h1 id="canal-nome">Canal nome</h1>
 				<div class="post_item"></div>
 				<div class="post_item">
@@ -183,15 +184,60 @@
 						<li class="admin"><a href="#">Admin </a></li>
 						<li class="date">23 Jan 2018</li>
 					</ul>
-					<button class="readmore-btn">My PlayList</button>
-					<button class="readmore-btn">My Video</button>
+					<button type="button" onclick="visualizarOpcaoDePlaylist()"
+						class="readmore-btn">My PlayList</button>
+						
+					<button type="button" 
+					class="readmore-btn" onclick="carregarVideos()">My Video</button>
 
-					<button class="readmore-btn">Add PlayList</button>
-					<button class="readmore-btn">Add Video</button>
+					<button type="button" onclick="visualizarTodasPaylist()"
+						class="readmore-btn">Add PlayList</button>
+
 				</div>
 
+				<div id="todas-playlist"></div>
+				<div id="video-player"></div>
+				<div id="opcoesPlaylist" class="contact-form">
+					<h1>PlayL+Opções</h1>
+					<form>
+						<ul>
+							<li><input id="id-playlist" type="text" id="nome-playlist"
+								placeholder="Busque pelo id" required class="form-control"></li>
+							<li><input id="nome-playlist-atualizado" type="text"
+								id="nome-playlist" placeholder="nome" required
+								class="form-control"></li>
 
+							<li><button class="submit-btn" type="button"
+									onclick="buscarPlaylist()">buscar</button></li>
+							<li><button class="submit-btn" type="button"
+									onclick="deletarPlaylist()">deletar</button></li>
+							<li><button class="submit-btn" type="button"
+									onclick="atualizarPlaylist()">atualizar</button></li>
+
+						</ul>
+					</form>
+					<div id="lista-playlist"></div>
+				</div>
+				<div id="cadastroVideos" class="contact-form">
+					<h1>Add videos!</h1>
+                    <p>Para salvar a url copie o link de incorparação do video no youtube</p>
+                    <img alt="" style="width:590px;height:300px;" src="images/tutorial.jpg">
+					<form>
+						<ul>
+							<li><input type="text" id="titulo-video" placeholder="Name"
+								required class="form-control"></li>
+								<li><input type="text" id="url-video" placeholder="Copie e cole a Url aqui"
+								required class="form-control"></li>
+
+							<li><button class="submit-btn" type="button"
+									onclick="addVideo()">salvar</button></li>
+
+						</ul>
+					</form>
+                  <div id="lista-video-salva"></div>
+				</div>
 			</div>
+
 		</div>
 
 	</section>
@@ -199,7 +245,6 @@
 		<div class="main-content">
 			<div id="cadastroPlaylist" class="contact-form">
 				<h1>Crie sua PLayList!</h1>
-
 				<form>
 					<ul>
 						<li><input id="nome-playlist" type="text" id="nome-playlist"
@@ -207,29 +252,15 @@
 
 						<li><button class="submit-btn" type="button"
 								onclick="addPlaylist()">submit</button></li>
-
 					</ul>
 				</form>
+				<div id="lista-playlist-salva"></div>
 			</div>
 
-          <div id="lista-playlist" >
-			
-         </div>
 
-			<div id="cadastroVideos" class="contact-form">
-				<h1>Add videos!</h1>
 
-				<form>
-					<ul>
-						<li><input type="text" id="nome-video" placeholder="Name"
-							required class="form-control"></li>
 
-						<li><button class="submit-btn" type="button"
-								onclick="addPlayList()">submit</button></li>
 
-					</ul>
-				</form>
-			</div>
 
 		</div>
 	</div>
