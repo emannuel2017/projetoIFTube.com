@@ -1,5 +1,4 @@
 
-alert('oi')
 $(window).scroll(function() {
 
 	if ($(window).scrollTop() > 44) {
@@ -25,12 +24,12 @@ if ( $('.videos-sec').length > 0 ) {
 	$.wmBox();
 }
 
-function get(){
+/*function get(){
 	fetch("/canal").then(function(response){
 			console.log("ok");
 		});
 	}
-get();
+get();*/
 
 function save(){
 	let xhr = new XMLHttpRequest;
@@ -70,7 +69,7 @@ function esconderDivPerfil(){
 	let div = document.getElementById('info-canal');
 	div.style.display = "none";
 	div.style.visibility = "hidden";
-    div = document.getElementById('cadastroCanal');
+	div = document.getElementById('cadastroCanal');
 	div.style.display = "none";
 	div.style.visibility = "hidden";
 }
@@ -89,7 +88,7 @@ function mostarFormularioDeCadastro(){
 	let div = document.getElementById('cadastroCanal');
 	div.style.display = "block";
 	div.style.visibility = "visible";
-	
+
 	div = document.getElementById('login');
 	div.style.display = "none";
 	div.style.visibility = "hidden";
@@ -214,8 +213,8 @@ function logar(){
 	let senha = document.getElementById('senha-login').value;
 
 	let canal = {
-		'email':`${email}`,
-		'senha':`${senha}`
+			'email':`${email}`,
+			'senha':`${senha}`
 	};
 
 	let xhr = new XMLHttpRequest;
@@ -256,13 +255,87 @@ function exibirDivCadastro(){
 	let div = document.getElementById('cadastroCanal');
 	div.style.display = "none";
 	div.style.visibility = "hidden";
-	
+
 }
 
 function carregarOpacaoDeUsuario(){
-	
-	
+
+
 }
 
+
+function addPlaylist(){
+
+	let http = new XMLHttpRequest;
+	let nome = document.getElementById('nome-playlist').value;
+	let id = localStorage.getItem("id");
+	http.open('POST','/canal/'+id+'/addPlaylist');
+	http.setRequestHeader('Content-Type', 'application/json');
+
+	http.onload = function(){
+
+		if(this.status == 200){
+			document.getElementById('lista-playlist').innerHTML =""; 
+			document.getElementById('lista-playlist').innerHTML +="<div class=\"card\">"
+				+"<div class=\"card-body\">" + nome  + " Salva com sucesso! </div>"
+				+"</div>"
+		}
+	}
+
+	
+
+	let playlist = {
+			'nome' : `${nome}`	
+	};
+
+	http.onerro = () => alert('ERRO');
+	http.send(JSON.stringify(playlist));
+
+}
+
+function visualizarTodasPaylist(){
+	let http = new XMLHttpRequest;
+
+	let id = localStorage.getItem("id");
+	http.open('GET','/playlist');
+
+	http.onload = function(){
+
+		if(this.status == 200){
+			let playlists = JSON.parse(this.responseText);
+			for(let i = 0; i < playlists.content.length; i++){
+			console.log(playlists);
+			document.getElementById('lista-playlist').innerHTML +="<div class=\"card\">"
+			+"<div class=\"card-body\">" + playlists.content[i].nome + "</div>"
+			+"</div>"
+			}
+		}
+	}
+	http.onerro = () => alert('ERRO');
+	http.send();
+}
+
+function visualizarPaylistSalva(){
+	let http = new XMLHttpRequest;
+
+	let id = localStorage.getItem("id");
+	http.open('GET','/playlist');
+
+	http.onload = function(){
+
+		if(this.status == 200){
+			let playlists = JSON.parse(this.responseText);
+			for(let i = 0; i < playlists.content.length; i++){
+			console.log(playlists);
+			document.getElementById('lista-playlist').innerHTML +="<div class=\"card\">"
+			+"<div class=\"card-body\">" + playlists.content[i].nome + "</div>"
+			+"<div class=\"card-body\">" + playlists.content[i].video[i] + "</div>"
+			+"</div>"
+			}
+		}
+	}
+	http.onerro = () => alert('ERRO');
+	http.send();
+}
 
 esconderDivPerfil();

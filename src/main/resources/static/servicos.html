@@ -49,23 +49,18 @@
 						<span class="navbar-toggler-icon"></span>
 					</button>
 					<div class="collapse navbar-collapse" id="navbarSupportedContent">
-					 <ul class="navbar-nav ml-auto">
-                            <li class="nav-item active">
-                                <a href="index.html" class="nav-link">Home</a>
-                            </li>
-                            <li class="navbar-item">
-                                <a href="videos.html" class="nav-link">Videos</a>
-                            </li>
-                            <li class="navbar-item">
-                                <a href="category.html" class="nav-link">categories</a>
-                            </li>
-                            <li class="navbar-item">
-                                <a href="blog.html" class="nav-link">blog</a>
-                            </li>
-                            <li class="navbar-item">
-                                <a href="servicos.html" class="nav-link">serviços</a>
-                            </li>
-                        </ul>
+						<ul class="navbar-nav ml-auto">
+							<li class="nav-item active"><a href="index.html"
+								class="nav-link">Home</a></li>
+							<li class="navbar-item"><a href="videos.html"
+								class="nav-link">Videos</a></li>
+							<li class="navbar-item"><a href="category.html"
+								class="nav-link">categories</a></li>
+							<li class="navbar-item"><a href="blog.html" class="nav-link">blog</a>
+							</li>
+							<li class="navbar-item"><a href="servicos.html"
+								class="nav-link">serviços</a></li>
+						</ul>
 						<form class="form-inline my-2 my-lg-0">
 							<input class="form-control mr-sm-2" type="search"
 								placeholder="Type your search here..." aria-label="Search">
@@ -146,7 +141,8 @@
 									<button class="submit-btn" type="button" onclick="delet()">deletar</button>
 								</li>
 								<li>
-									<button class="submit-btn" type="button" onclick="carregarOpacaoDeUsuario()">Confirmar</button>
+									<button class="submit-btn" type="button"
+										onclick="carregarOpacaoDeUsuario()">Confirmar</button>
 								</li>
 							</ul>
 						</form>
@@ -162,6 +158,82 @@
 			</div>
 		</div>
 	</section>
+
+	<section class="blog-sec">
+		<div class="container">
+			<div class="main-content">
+				<h1 id="canal-nome">Canal nome</h1>
+				<div class="post_item"></div>
+				<div class="post_item">
+					<img id="canal-img"
+						src="https://marketingdeconteudo.com/wp-content/uploads/2017/08/como-criar-um-canal-no-youtube.png"
+						alt="blog"> <a href="#" class="category-ttl">Health</a>
+					<div class="shared-sec right">
+						<ul>
+							<li>Share On :</li>
+							<li><a href="#"><span class="fab fa-facebook"></span></a></li>
+							<li><a href="#"><span class="fab fa-instagram"></span></a></li>
+							<li><a href="#"><span class="fab fa-twitter"></span></a></li>
+							<li><a href="#"><span class="fab fa-pinterest"></span></a></li>
+							<li><a href="#"><span class="fab fa-google-plus-g"></span></a>
+							</li>
+						</ul>
+					</div>
+					<ul class="post-tools">
+						<li class="admin"><a href="#">Admin </a></li>
+						<li class="date">23 Jan 2018</li>
+					</ul>
+					<button class="readmore-btn">My PlayList</button>
+					<button class="readmore-btn">My Video</button>
+
+					<button class="readmore-btn">Add PlayList</button>
+					<button class="readmore-btn">Add Video</button>
+				</div>
+
+
+			</div>
+		</div>
+
+	</section>
+	<div class="container">
+		<div class="main-content">
+			<div id="cadastroPlaylist" class="contact-form">
+				<h1>Crie sua PLayList!</h1>
+
+				<form>
+					<ul>
+						<li><input id="nome-playlist" type="text" id="nome-playlist"
+							placeholder="Name" required class="form-control"></li>
+
+						<li><button class="submit-btn" type="button"
+								onclick="addPlaylist()">submit</button></li>
+
+					</ul>
+				</form>
+			</div>
+
+          <div id="lista-playlist" >
+			
+         </div>
+
+			<div id="cadastroVideos" class="contact-form">
+				<h1>Add videos!</h1>
+
+				<form>
+					<ul>
+						<li><input type="text" id="nome-video" placeholder="Name"
+							required class="form-control"></li>
+
+						<li><button class="submit-btn" type="button"
+								onclick="addPlayList()">submit</button></li>
+
+					</ul>
+				</form>
+			</div>
+
+		</div>
+	</div>
+
 	<footer>
 
 		<div class="col-md-4 instragram">
