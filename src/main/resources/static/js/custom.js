@@ -1,5 +1,5 @@
 
-
+alert('oi')
 $(window).scroll(function() {
 
 	if ($(window).scrollTop() > 44) {
@@ -171,7 +171,7 @@ function buscarCanalPorEmail(){
 			email.value = recebe.content[0].email;
 			senha.value = recebe.content[0].senha;
 			id.value = recebe.content[0].id;
-			
+			localStorage.setItem("id",id.value);
 			localStorage.setItem("nome",nome.value);
 			localStorage.setItem("email",email.value);
 			console.log(localStorage.getItem("nome"));

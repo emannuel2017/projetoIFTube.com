@@ -49,18 +49,23 @@
 						<span class="navbar-toggler-icon"></span>
 					</button>
 					<div class="collapse navbar-collapse" id="navbarSupportedContent">
-						<ul class="navbar-nav ml-auto">
-							<li class="nav-item active"><a href="index.html"
-								class="nav-link">Home</a></li>
-							<li class="navbar-item"><a href="videos.html"
-								class="nav-link">Videos</a></li>
-							<li class="navbar-item"><a href="category.html"
-								class="nav-link">categories</a></li>
-							<li class="navbar-item"><a href="blog.html" class="nav-link">blog</a>
-							</li>
-							<li class="navbar-item"><a href="contact.html"
-								class="nav-link">contact</a></li>
-						</ul>
+					 <ul class="navbar-nav ml-auto">
+                            <li class="nav-item active">
+                                <a href="index.html" class="nav-link">Home</a>
+                            </li>
+                            <li class="navbar-item">
+                                <a href="videos.html" class="nav-link">Videos</a>
+                            </li>
+                            <li class="navbar-item">
+                                <a href="category.html" class="nav-link">categories</a>
+                            </li>
+                            <li class="navbar-item">
+                                <a href="blog.html" class="nav-link">blog</a>
+                            </li>
+                            <li class="navbar-item">
+                                <a href="servicos.html" class="nav-link">serviços</a>
+                            </li>
+                        </ul>
 						<form class="form-inline my-2 my-lg-0">
 							<input class="form-control mr-sm-2" type="search"
 								placeholder="Type your search here..." aria-label="Search">
@@ -104,10 +109,12 @@
 						<li class="admin"><a href="#">Admin </a></li>
 						<li class="date">23 Jan 2018</li>
 					</ul>
+					<button class="readmore-btn">My PlayList</button>
+					<button class="readmore-btn">My Video</button>
+			
 					<button class="readmore-btn">Add PlayList</button>
 					<button class="readmore-btn">Add Video</button>
-					<button class="readmore-btn">Opções</button>
-				</div>
+							</div>
 
 
 			</div>
@@ -116,8 +123,22 @@
 	</section>
 		<div class="container">
 			<div class="main-content">
-			<div id="cadastroCanal" class="contact-form">
+			<div id="cadastroPlaylist" class="contact-form">
 						<h1>Crie sua PLayList!</h1>
+
+						<form>
+							<ul>
+								<li><input id="nome-playlist" type="text" id="nome-cadastro"
+									placeholder="Name" required class="form-control"></li>
+								
+								<li><button class="submit-btn" type="button"
+										onclick="addPlaylist()">submit</button></li>
+
+							</ul>
+						</form>
+					</div>
+			<div id="cadastroPlaylist" class="contact-form">
+						<h1>Add videos!</h1>
 
 						<form>
 							<ul>
@@ -130,6 +151,7 @@
 							</ul>
 						</form>
 					</div>
+					
 			</div>
 		</div>
 	<footer>
@@ -211,7 +233,8 @@
     </script>
 	<script defer
 		src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
-	<script type="text/javascript" src="js/custom.js"></script>
+	<script type="text/javascript" src="js/canal.js"></script>
+	
 </body>
 
 </html>

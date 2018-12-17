@@ -20,7 +20,7 @@ import com.wep.iftube.model.Video;
 import com.wep.iftube.repositories.PlaylistRepository;
 
 @RestController
-public class PLaylistController {
+public class PlaylistController {
 
 	@Autowired
 	PlaylistRepository playlistRepository;
