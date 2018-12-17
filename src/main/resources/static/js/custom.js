@@ -85,7 +85,16 @@ function esconderDivCadastro(){
 	div.style.visibility = "visible";
 }
 
+function mostarFormularioDeCadastro(){
+	let div = document.getElementById('cadastroCanal');
+	div.style.display = "block";
+	div.style.visibility = "visible";
+	
+	div = document.getElementById('login');
+	div.style.display = "none";
+	div.style.visibility = "hidden";
 
+}
 
 function tabela(){
 	let recebe;
@@ -162,7 +171,10 @@ function buscarCanalPorEmail(){
 			email.value = recebe.content[0].email;
 			senha.value = recebe.content[0].senha;
 			id.value = recebe.content[0].id;
-
+			
+			localStorage.setItem("nome",nome.value);
+			localStorage.setItem("email",email.value);
+			console.log(localStorage.getItem("nome"));
 
 //			}
 		}
@@ -220,6 +232,7 @@ function logar(){
 			console.log(recebe);
 //			for (var i = 0; i < recebe.content.length; i++) {
 			let id = document.getElementById("id");
+			let nome = document.getElementById("nome");
 			let email = document.getElementById("email");
 			let senha = document.getElementById("senha");
 			nome.value = recebe.nome;
@@ -246,7 +259,10 @@ function exibirDivCadastro(){
 	
 }
 
-
+function carregarOpacaoDeUsuario(){
+	
+	
+}
 
 
 esconderDivPerfil();
