@@ -1,6 +1,8 @@
 package com.wep.iftube.repositories;
 
 
+import java.util.Optional;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -11,13 +13,15 @@ import com.wep.iftube.model.Playlist;
 
 @Repository
 public interface CanalRepository extends JpaRepository<Canal, Long>{
- 
-	Page<Canal> findByNome(String nome,Pageable pageable);
-	Page<Canal> findByEmail(String email,Pageable pageable);
-	Page<Canal> findBySenha(String senha,Pageable pageable);
-	Canal findByEmail(String email);
-	Canal findBySenha(String senha);
+
+	public Page<Canal> findByNome(String nome,Pageable pageable);
+	public  Page<Canal> findByEmail(String email,Pageable pageable);
+	public	Page<Canal> findBySenha(String senha,Pageable pageable);
 	
-	Canal findByEmailAndSenha(String nome, String senha);
-	
+	public	Optional<Canal> findByEmail(String email);
+	public	Canal findBySenha(String senha);
+
+	public	Canal findByEmailAndSenha(String nome, String senha);
+
+
 }
