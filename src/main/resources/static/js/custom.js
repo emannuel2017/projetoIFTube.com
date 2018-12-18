@@ -53,8 +53,11 @@ function save(){
 	xhr.onload = function(){
 
 		if(this.status == 200){
+			esconderDiv('login');
+			exebirDiv('canal-main');
 			esconderDivCadastro();
 			buscarCanalPorEmail();
+
 		}
 	}
 
@@ -272,7 +275,7 @@ function carregarOpacaoDeUsuario(){
 
 function visualizarOpcaoDePlaylist(){
 	exebirDiv('opcoesPlaylist');
-	exebirDiv('cadastroVideos');
+	
 	visualizarTodasPaylist();
 }
 
@@ -365,6 +368,7 @@ function buscarPlaylist(){
 			let nome = document.getElementById("nome-playlist-atualizado");
 			nome.value = playlists.nome;
 			id.value = playlists.id;
+			exebirDiv('cadastroVideos');
 			console.log(playlists);
 		}
 	}
